@@ -1,4 +1,6 @@
-chrome.webNavigation.onBeforeNavigate.addListener((details) => {
+chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
+    const b = await chrome.storage.sync.get(['featureEnabled']) as { featureEnabled: boolean };
+    if (!b.featureEnabled) return;
     const hostname = GetHostname(details.url);
     const pathname = GetPathname(details.url);
     chrome.bookmarks.search(hostname, results => {
