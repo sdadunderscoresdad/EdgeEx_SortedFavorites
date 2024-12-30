@@ -4,14 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/scripts/popup.js"></script>
+    <style>
+        /* 滑动开关的基本样式 */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* 隐藏默认的 HTML 复选框 */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* 滑块 */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        /* 禁用动画的类 */
+        .no-transition .slider {
+            transition: none;
+        }
+
+        .no-transition .slider:before {
+            transition: none;
+        }
+
+        /* 当复选框被选中时 */
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+    </style>
 </head>
 
 <body>
-    <label class="switch">
+    <label class="switch no-transition">
         <input type="checkbox" id="switch">
         <span class="slider round"></span>
     </label>
 </body>
+<script src="/scripts/popup.js"></script>
 
 </html>
