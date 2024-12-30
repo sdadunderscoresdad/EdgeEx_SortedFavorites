@@ -36,21 +36,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 document.addEventListener('DOMContentLoaded', function () { return __awaiter(_this, void 0, void 0, function () {
-    var switchElement, switchLabel, _a;
+    var switchElement, _a;
     var _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
             case 0:
                 switchElement = document.getElementById('switch');
-                switchLabel = switchElement.parentElement;
                 _a = switchElement;
                 return [4 /*yield*/, chrome.storage.sync.get(['featureEnabled'])];
             case 1:
                 _a.checked = ((_b = (_c.sent())) !== null && _b !== void 0 ? _b : false).featureEnabled;
-                // 打开开关动画
-                // 大概是因为在这里设置会抢在绘制任务之前把类移除吧，所以这里设置了一个小延时，等绘制任务完成后再移除
-                // 应该有更优雅的做法，但是现在就先这样，又不是不能用，说到底本来咱就不是专业的前端
-                setTimeout(function () { return switchLabel.classList.remove('no-transition'); }, 10);
                 switchElement.addEventListener('change', function () {
                     var isEnabled = switchElement.checked;
                     chrome.storage.sync.set({ featureEnabled: isEnabled });
